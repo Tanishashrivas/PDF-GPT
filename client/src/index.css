@@ -1,0 +1,100 @@
+body{
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 300;
+}
+.mainContainer{
+  background-color: #141623;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.subContainer1{
+  /* background-color: #12131A; */
+  background: linear-gradient(#000000 70%, #1d2850e3);
+  padding: 7.5px;
+  width: 23%;
+  height: 100vh;
+}
+
+.headerBox{
+  background-color: #121324a6;
+  border-radius: 14px;
+  height: 13%;
+  margin-top: 1vh;
+}
+
+.box1{
+  display: flex;
+  padding: 5px;
+}
+
+.logoImg{
+  width: 48px;
+  height: 48px;
+  margin: 4px;
+}
+
+.title{
+  display: flex;
+  flex-direction: column;
+}
+.version {
+  margin-top: 9px;
+  margin-bottom: 0;
+  font-size: .75rem;
+  color: #a5a4a46e;
+  font-weight: bold;
+}
+
+.titleName{
+  margin-top: 1px;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  font-weight: bold;
+  color: white;
+}
+
+.midBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85%;
+}
+
+.uploadWindow{
+  height: 25%;
+    width: 86%;
+    background-color: #0a0c10;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    color: white;
+    padding: 5px;
+    border: 1px dashed darkblue;
+}
+.uploadPdf{
+  padding: 7px 51px;
+  margin: 0 3px;
+  margin-bottom: 6px;
+  color: white;
+  outline: none;
+  border: none;
+  background-color: hsl(220, 100%, 35%);
+  border-radius: 3px;
+}
+.uploadPdf:hover{
+  background-color: hsl(220, 100%, 25%);
+}
+
+.drag-text{
+  margin-bottom: 5vh;
+  font-size: .9rem; 
+}
+
+.subContainer2{
+  background-color: #0a0a0a;
+  width: 77%;
+  padding: 7.5px;
+}
