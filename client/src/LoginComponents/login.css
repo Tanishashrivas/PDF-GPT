@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background: url(../assets/bg2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}
+
+.loginContainer {
+
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+.loginContainer > form {
+    width: 76%;
+    border: 2px solid #080808;
+    padding: 20px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.labelClass{
+    font-weight: 350;
+}
+
+.inputFieldLogin {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #1e1d1d;
+}
+
+pre {
+    width: 70%;
+    color: #fff;
+    font-size: larger;
+}
+
+.loginForm button {
+    background: #0543b4de !important;
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+p {
+    color: rgb(255, 0, 0);
+}
+
+.text {
+    margin: 2px;
+    padding: 5px;
+    font-weight: 400;
+    margin-bottom: 3px;
+}
+
+span{
+    color: #042350;
+    cursor: pointer;
+    font-weight: bold
+}
+.googleText{
+    margin: 2px;
+    padding: 5px;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #042350;
+}

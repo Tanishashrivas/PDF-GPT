@@ -13,7 +13,7 @@ function Home() {
               <div className="title">
                 <p className="version">Version 3.7</p>
                 <p className="titleName">pdfGPT</p>
-                <p className="titleHeadline">Learning made easy!</p>
+                {/* <p className="titleHeadline">Learning made easy!</p> */}
               </div>
             </div>
           </div>
