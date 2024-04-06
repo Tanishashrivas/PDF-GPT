@@ -8,7 +8,7 @@ function Chat() {
 
   const sendMessage = () => {
     if (inputValue.trim() !== "") {
-      setMessages([...messages, { text: inputValue, sender: "user" }]);
+      setMessages(messages => [...messages, { text: inputValue, sender: "user" }]);
       setInputValue("");
       scrollToBottom();
     }

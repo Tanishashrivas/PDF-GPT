@@ -1,4 +1,4 @@
-import logo from "./assets/pp.jpg";
+import logo from "./assets/logo.png";
 import Chat from "./ChatComponent/Chat";
 import DragWindow from "./DragWindow";
 
@@ -12,7 +12,8 @@ function Home() {
               <img src={logo} alt="" className="logoImg" />
               <div className="title">
                 <p className="version">Version 3.7</p>
-                <p className="titleName">ChatGPT</p>
+                <p className="titleName">pdfGPT</p>
+                <p className="titleHeadline">Learning made easy!</p>
               </div>
             </div>
           </div>

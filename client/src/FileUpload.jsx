@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 
-function FileUpload({ onFileUpload }) {
+function FileUpload() {
   const fileInputRef = useRef(null);
 
   const handleFileUpload = async (event) => {
     const uploadedFile = event.target.files[0];
-    console.log("Uploaded file:", uploadedFile); // Debug log
+    console.log("Uploaded file:", uploadedFile); // Debug statement to check console
     if (uploadedFile) {
       // console.log("Uploading file...");
       try {
@@ -23,7 +23,7 @@ function FileUpload({ onFileUpload }) {
 
         alert("File uploaded successfully:", response.data);
         console.log("File uploaded successfully:", response.data);
-        onFileUpload(response.data);
+        // onFileUpload(response.data);
       } catch (error) {
         console.error("Error uploading file:", error);
         alert("Error uploading file.");

@@ -1,6 +1,6 @@
-// DragWindow.jsx
 import React, { useState } from "react";
-import PdfUpload from "./PdfUpload";
+import axios from "axios";
+import FileUpload from "./FileUpload";
 
 function DragWindow() {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
@@ -23,19 +23,35 @@ function DragWindow() {
   };
 
   const handleFiles = (files) => {
-    const file = files[0]; // Only handle the first file
+    const file = files[0]; // Only handling the first file
     if (file.type === "application/pdf") {
       uploadFile(file);
     } else {
-      alert("Please drop only PDF files.");
+      alert("Please select a pdf file.");
     }
   };
 
-  const uploadFile = (file) => {
-    // Perform file upload logic here (e.g., using fetch or Axios)
-    console.log("Uploading file:", file.name);
-    // Assuming this function is available in PdfUpload
-    PdfUpload.handlePdfUpload(file);
+  const uploadFile = async(file) => {
+    console.log("Uploading file:", file);
+    if (file) {
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const response = await axios.post("http://localhost:3000/upload/pdf", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        alert("File uploaded successfully:", response.data);
+        console.log("File uploaded successfully:", response.data);
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        alert("Error uploading file.");
+      }
+    }
+    
   };
 
   return (
@@ -46,7 +62,7 @@ function DragWindow() {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <PdfUpload />
+      <FileUpload />
       <div className="drag-text">Drag & Drop PDF file here</div>
     </div>
   );

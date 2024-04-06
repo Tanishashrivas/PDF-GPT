@@ -1,6 +1,6 @@
 import express from "express";
-import multer from "multer";
-import cors from "cors";
+import multer from "multer"; //to handle file uploads
+import cors from "cors"; //to handle cross origin platforms
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -28,11 +28,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post("/upload/pdf", upload.single('file'), (req, res) => {
-    // const { title } = req.body;
     const file = req.file;
   
     console.log("PDF uploaded:", file);
-
     res.send("PDF uploaded successfully!");
 });
 
@@ -40,10 +38,6 @@ app.post("/upload/pdf", upload.single('file'), (req, res) => {
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
-});
-
-app.get("/", (req,res) => {
-    res.send("Server is working fine");
 });
 
 app.listen(PORT, () => {
