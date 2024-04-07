@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from "./firebase";
-import Login from "./LoginComponents/Login";
-import Home from "./Home";
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { auth } from './firebase';
+import Login from './LoginComponents/Login';
+import Home from './Home';
+import RegisteredLogin from './LoginComponents/RegisteredLogin';
 
 function App() {
-  /*const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -15,24 +18,27 @@ function App() {
         // User is signed out.
         setUser(null);
       }
+      setLoading(false);
     });
 
-    return () => unsubscribe();
-  }, []);*/
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <>
-    {/* <div>
-      {user ? (
-        <Home />
-      ) : (
-        <Login />
-      )}
-    </div> */}
-        <Login />
-
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<RegisteredLogin />} />
+        <Route path="/home" element={user ? <Home /> : <Navigate to="/" />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

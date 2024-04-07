@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate  } from "react-router-dom"; 
 import "./login.css";
 import Home from "../Home";
+import axios from "axios";
 import { signInWithGooglePopup } from "../firebase";
 
 function Login() {
+  const navigateTo = useNavigate(); 
+
   const initialValues = {
     username: "",
     email: "",
@@ -19,10 +23,22 @@ function Login() {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+
+    // Backend data sending...
+    try {
+      const response = await axios.post("http://localhost:3000/login", { formValues });
+      console.log(response.data);
+
+      if (Object.keys(formErrors).length === 0) {
+        navigateTo('/home'); // Redirect to the home route
+      }
+    } catch (error) {
+      console.error("Error sending data:", error);
+    }
   };
 
   useEffect(() => {
@@ -31,6 +47,7 @@ function Login() {
       console.log(formValues);
     }
   }, [formErrors, formValues, isSubmit]);
+
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -59,6 +76,7 @@ function Login() {
     try {
       await signInWithGooglePopup();
       console.log('User signed in with Google successfully!');
+      navigateTo("/home"); // Redirect to Home after successful Google sign-in
     } catch (error) {
       console.error('Error signing in with Google:', error.message);
     }
@@ -69,14 +87,12 @@ function Login() {
       <div className="bgImg"></div>
       <div className="loginContainer">
         {Object.keys(formErrors).length === 0 && isSubmit ? (
-          <Home />
-          // console.log("Signed in")
+          <p>Successfull login, redirecting...</p>
         ) : (
-            // 
-            console.log("error signing in")
+          console.log("error signing in")
         )}
 
-        <form className="loginForm" onSubmit={handleSubmit}>
+        <form className="loginForm" onSubmit={handleSubmit} method="POST" action="/login">
           <h1>Sign Up</h1>
           <div className="ui divider"></div>
           <div className="ui form">
@@ -129,15 +145,15 @@ function Login() {
           </div>
         </form>
         <div className="text">
-          Already have an account? <span>Login</span>
+          Already have an account? <span onClick={() => navigateTo("/login")}>Login</span>
         </div>
 
         <div>
-        <a className="googleText" href="#" onClick={handleSignIn}>
-          Login with Google
-        </a>
+          <a className="googleText" href="#" onClick={handleSignIn}>
+            Login with Google
+          </a>
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 }
